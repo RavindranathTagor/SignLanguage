@@ -1,15 +1,27 @@
 {% extends 'base.html' %}
 
+{% block head %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+{% endblock %}
+
 {% block content %}
 	
 	<h2>VERSION 1.0.0</h2>
  	<hr>
  	<h2>CONTACT US</h2>
-	<p class="td">For any queries regarding this website contact us on following:</p>
-	<p class="td">Our Email ID:rtravindra10@gmail.com</p>
-	<p class="td">Twitter handle:@RavindrRT</p>
-	<p class="td">Contact number:8431805765</p>
+	<div class="contact-section" style="background-color: #eef2f5; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); max-width: 600px; margin: 0 auto;">
+		<p class="td" style="margin-bottom: 15px; font-size: 1.1em; color: #333;">For any queries regarding this website, contact us at:</p>
+		<p class="td" style="color: #2a9d8f; margin-bottom: 10px; font-size: 1.1em;">
+			<i class="fa fa-envelope" aria-hidden="true"></i> Our Email ID: <a href="mailto:rtravindra10@gmail.com" style="color: #2a9d8f; text-decoration: none;">rtravindra10@gmail.com</a>
+		</p>
+		<p class="td" style="color: #e76f51; margin-bottom: 10px; font-size: 1.1em;">
+			<i class="fa fa-twitter" aria-hidden="true"></i> Twitter handle: <a href="https://twitter.com/RavindrRT" target="_blank" style="color: #e76f51; text-decoration: none;">@RavindrRT</a>
+		</p>
+		<p class="td" style="color: #f4a261; margin-bottom: 10px; font-size: 1.1em;">
+			<i class="fa fa-phone" aria-hidden="true"></i> Contact number: <a href="tel:+918431805765" style="color: #f4a261; text-decoration: none;">8431805765</a>
+		</p>
+ 	</div>
  	<hr>
-	<p class="td">Thank you</p>
+	<p class="td" style="text-align: center; margin-top: 20px; font-size: 1.2em; color: #555;">Thank you</p>
 
 {% endblock %}

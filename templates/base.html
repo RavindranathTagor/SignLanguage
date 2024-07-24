@@ -2,239 +2,367 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
-<style>
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-#nav {
-  list-style-type: none;
-  margin-top:0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #feda6a;
-}
-h2
-{
-  color: #feda6a;
-}
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 
-.li {
-  float: left;
-}
-
-.li a {
-  display: block;
-  color: #393f4d;
-  font-size: 20px;
-  font-weight: bold;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover {
-  background-color: #393f4d;
-  color: #feda6a;
-  font-weight: bold;
-}
-.form-style button{
-
-  width: 89%;
-	height:70%;
-	padding: 5%;
-	background: #feda6a;
-	border-bottom: 2px solid #393f4d;;
-	border-top-style: none;
-	border-right-style: none;
-	border-left-style: none;
-	color: #393f4d;
-  font-weight: bold;
-  font-size: 28px;
-  font-family: "Times New Roman";
-}
-
-.form-style button:hover {
-  background-color: #393f4d;
-  color: #feda6a;
-  font-weight: bold;
-}
-.split {
-  height: 100%;
-  width: 50%;
-  position: fixed;
-  z-index: 1;
-  top: 50;
-  overflow-x: hidden;
-  padding-top: 20px;
-
-}
-
-.left {
-  left: 15;
-  border-right: 0px #feda6a solid;
-}
-
-.right {
-  right: 0;
-  border-left: 1px #feda6a solid;
-}
-
-.mytext {
-    border:1px solid #393f4d;
-    border-right:none;
-    padding:4px;
-    margin:0px;
-    float:left;
-    height:32px;
-    overflow:hidden;
-    line-height:16px;
-    width: 300px;
-    margin-left: 54px;
-  }
-
-  .mic {
-      border:1px solid #393f4d;
-      background:#feda6a;
-      vertical-align:top;
-      padding:0px;
-      margin:0;
-      float:left;
-      height:42px;
-      overflow:hidden;
-      width:5em;
-      text-align:center;
-      line-height:16px;
-  }
   
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: 80px;
+      margin-top: -315px;
+      width: 50%;
+    }
 
-.submit {
-    border:1px solid #393f4d;
-    height: 42px;
-    width: 160px;
-    text-align: center;
-    background-color: #feda6a;
-    color: #393f4d;
-    font-weight: bold;
-    font-size: 24px;
-    font-family: "Times New Roman";
-    vertical-align:top;
-}
-.submit:hover {
-  background-color: #393f4d;
-  color: #feda6a;
-  font-weight: bold;
-}
-.td {
-  color: #feda6a;
-  font-weight: bold;
-  font-size: 20px;
+    #nav {
+      list-style-type: none;
+      margin-top: 2px;
+      padding: 0;
+      overflow: hidden;
+      display: block;
+      
+    }
+
+    h1 {
+     
+      font-weight: 300;
+      color: white;
+      margin-top: -65px;
+      margin-left: 72px;
+    }
+
+    h2 {
+      color: white;
+    }
+
+    .li {
+      float: left;
+    }
+
+    .li a {
+      display: block;
+      color: white;
+      font-size: 25px;
+      font-weight: 300;
+      padding: 0px 0px;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease;
+      /* Add fixed width to buttons to prevent layout shift */
+      width: 129px;
+      /* Adjust this value as needed */
+      text-align: center;
+      line-height: 1.5;
+      
+    }
+
+    .li a:hover {
+     border-radius: 25PX;
+      color: #fff;
+      font-size: 29px;
+      background-color: #0056b3;
+      padding-left:10px ;
+    
+    }
+
+    /* li a:hover {
+      color: rgb(65, 11, 78);
+      font-size: 29px;
+      font-weight: bold;
+      padding: 14px 12px;
+      text-decoration: none;
+    } */
+
+    .form-style button {
+      font-style: "Oswald";
+      font-family: "Oswald";
+      width: 150%;
+      height: 70%;
+      padding: 5%;
+      background: #feda6a;
+      font-weight: bold;
+      font-size: 28px;
+      font-family: "Times New Roman";
+      right: 101px;
+      background: linear-gradient(135deg, rgba(187, 40, 175, 0.8), rgb(255, 143, 116));
+      color: #fff;
+      border: 2px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+      margin-left: 120px;
+      border-color: #81166a;
+    }
+
+    .form-style button:hover {
+      color: purple;
+      font-weight: bold;
+    }
+
+    .split {
+      height: 100%;
+      width: 50%;
+      position: fixed;
+      z-index: 1;
+      top: 50;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+
+    .left {
+      left: 15;
+      border-right: 0px #feda6a solid;
+    }
+
+    .right {
+      right: 0;
+      border-left: 1px #feda6a solid;
+    }
+
+    .mytext {
+      border: 1px solid #393f4d;
+      border-right: none;
+      padding: 4px;
+      margin: 0px;
+      float: left;
+      height: 32px;
+      overflow: hidden;
+      line-height: 16px;
+      width: 300px;
+      margin-left: 18px;
+    }
+
+    .mic {
+      border: 1px solid #393f4d;
+      background: #feda6a;
+      vertical-align: top;
+      padding: 0px;
+      margin: 0;
+      float: left;
+      height: 42px;
+      overflow: hidden;
+      width: 5em;
+      text-align: center;
+      line-height: 16px;
+      border-radius: 20px;
+      margin-left: 4px;
+    }
+
+    .submit {
+      
+      border: 1px solid #393f4d;
+      height: 42px;
+      width: 160px;
+      text-align: center;
+      background-color: #feda6a;
+      color: #393f4d;
+      font-weight: bold;
+      font-size: 29px;
+      font-family: "Times New Roman";
+      vertical-align: top;
+      padding-top: 2px;
+    }
+
+    .submit:hover {
+      background-color: #393f4d;
+      color: #feda6a;
+      font-weight: bold;
+    }
+
+    .td {
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    body {
+      background-image: url(https://i.ibb.co/M1KXcYY/Untitled-design.png);
+      font-family: "oswald";
+      font-weight: 100;
+    }
+
+    .form-style {
+      font: 95% Arial, Helvetica, sans-serif;
+      max-width: 400px;
+      margin: 10px auto;
+      padding: 16px;
+    }
+
+    .form-style h1,
+    .form-style a {
+      padding: 20px 0;
+      font-size: 24px;
+      font-weight: bold;
+      font-family: "Times New Roman";
+      text-align: center;
+      margin: -16px -16px 16px -16px;
+      color: white
+    }
+
+    .form-style input[type="text"],
+    .form-style input[type="password"],
+    .form-style input[type="date"],
+    .form-style input[type="datetime"],
+    .form-style input[type="email"],
+    .form-style input[type="number"],
+    .form-style input[type="search"],
+    .form-style input[type="time"],
+    .form-style input[type="url"],
+    .form-style textarea,
+    .form-style select {
+      -webkit-transition: all 0.30s ease-in-out;
+      -moz-transition: all 0.30s ease-in-out;
+      -ms-transition: all 0.30s ease-in-out;
+      -o-transition: all 0.30s ease-in-out;
+      outline: none;
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      width: 100%;
+      background: #fff;
+      margin-bottom: 4%;
+      border: 1px solid #ccc;
+      padding: 3%;
+      color: #0000a0;
+      font: 95% Arial, Helvetica, sans-serif;
+    }
+
+    .form-style input[type="text"]:focus,
+    .form-style input[type="password"]:focus,
+    .form-style input[type="date"]:focus,
+    .form-style input[type="datetime"]:focus,
+    .form-style input[type="email"]:focus,
+    .form-style input[type="number"]:focus,
+    .form-style input[type="search"]:focus,
+    .form-style input[type="time"]:focus,
+    .form-style input[type="url"]:focus,
+    .form-style textarea:focus,
+    .form-style select:focus {
+      box-shadow: 0 0 5px #0000a0;
+      padding: 3%;
+      border: 1px solid #0000a0;
+    }
+
+    .site-form span,
+    label {
+      color: #0000a0;
+      
+    }
+
+    .errorlist {
+      color: red;
+      font-weight: bold;
+    }
+
+    element .k {
+      text-align: right;
+      padding: -5px -9px;
+      display: inline-block;
+    }
+
+    .k a {
+      text-decoration: none;
+      padding: 0px 10px;
+      color: white;
+    }
+
+    .rk {
+      position: absolute;
+      top: 0%;
+      right: 25%;
+    }
+
+    .p {
+      text-align: right;
+      padding-left: 50%;
+      position: relative;
+      left: 120%;
+    }
+
+    .logo_img img {
+      height: 10%;
+      width: 5%;
+    }
+
+    element.style {
+      padding: -3px -9px;
+    }
+.signup-button{
+  padding-left:10px ;
 }
 
-body
-{
-  background-color: #404040
-}
+    .auth-button {
+      padding: 6px 10px;
+      background: blue;
+      color: #ffffff;
+      font-size: 12px;
+      font-family: "Times New Roman";
+      cursor: pointer;
+      border-radius: 20px;
+    }
 
-.form-style{
-	font: 95% Arial, Helvetica, sans-serif;
-	max-width: 400px;
-	margin: 10px auto;
-	padding: 16px;
+    .auth-button:hover {
+      background-color: #0056b3;
+      color: #ffffff;
+    }
 
-}
-.form-style h1, .form-style a{
-	padding: 20px 0;
-  font-size: 24px;
-	font-weight: bold;
-  font-family: "Times New Roman";
-	text-align: center;
-	margin: -16px -16px 16px -16px;
-  color:#feda6a
-}
-.form-style input[type="text"],
-.form-style input[type="password"],
-.form-style input[type="date"],
-.form-style input[type="datetime"],
-.form-style input[type="email"],
-.form-style input[type="number"],
-.form-style input[type="search"],
-.form-style input[type="time"],
-.form-style input[type="url"],
-.form-style textarea,
-.form-style select
-{
-	-webkit-transition: all 0.30s ease-in-out;
-	-moz-transition: all 0.30s ease-in-out;
-	-ms-transition: all 0.30s ease-in-out;
-	-o-transition: all 0.30s ease-in-out;
-	outline: none;
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	width: 100%;
-	background: #fff;
-	margin-bottom: 4%;
-	border: 1px solid #ccc;
-	padding: 3%;
-	color:#0000a0 ;
-	font: 95% Arial, Helvetica, sans-serif;
-}
-.form-style input[type="text"]:focus,
-.form-style input[type="password"]:focus,
-.form-style input[type="date"]:focus,
-.form-style input[type="datetime"]:focus,
-.form-style input[type="email"]:focus,
-.form-style input[type="number"]:focus,
-.form-style input[type="search"]:focus,
-.form-style input[type="time"]:focus,
-.form-style input[type="url"]:focus,
-.form-style textarea:focus,
-.form-style select:focus
-{
-	box-shadow: 0 0 5px #0000a0;
-	padding: 3%;
-	border: 1px solid #0000a0;
-}
-
-.site-form span,label{
-  color: #feda6a;
-}
-.errorlist{
-    color: red;
-    font-weight: bold;
-}
-</style>
-<title>Homepage</title>
+    .signup-button {
+      margin-right: 10px;
+      /* Adjust the value as needed for the desired gap */
+    }
+    #nav .navigation{
+    margin-top: -52px;
+    margin-left: 665px;
+    float: left;
+    align-items:left;
+    justify-content: left;
+    }
+    /* .contact {
+      padding-left: 2px;
+    } */
+    
+  </style>
+  <title>Homepage</title>
 </head>
-<div style="background-color:#404040;color:#feda6a;padding:10 10 1 10;border: 1px #feda6a groove;margin-bottom:0;">
 
-<h1 align=center>Audio To Sign Language</h1>
-</div>
-<br>
 <body>
-<ul id="nav">
-  <li class="li"><a class="active" href="{% url 'home' %}">Home</a></li>
-  <li class="li"><a href="{% url 'animation' %}">Convertor</a></li>
-  {% if not user.is_authenticated %}
-  <li class="li"><a href="{% url 'signup' %}">Sign Up</a></li>
-  {% endif %}
-  {% if user.is_authenticated %}
-  <li class="li"><a href="{% url 'logout' %}">Log-Out</a></li>
-  {% else %}
-    <li class="li"><a href="{% url 'login' %}">Log-in</a></li>
-  {% endif %}
-  <li class="li"><a href="{% url 'contact' %}">Contact</a></li>
-  <li class="li"><a href="{% url 'about' %}">About</a></li>
-</ul>
+ 
 
-<div class="wrapper" >
-  {% block content %}
-  {% endblock %}
-</div>
+  <ul id="nav">
+    <div style="color:papayawhip;padding:-3 10 1 10;margin-bottom:-12px;border-radius: 15px;">
+      <div class="element">
+        <div class="logo_img">
+          <img src="https://i.ibb.co/98Jxtgf/5-1.png" alt="">
+          <h1 class="k">AI VIRTUAL CLASSROOM</h1>
+        </div>
+      </div>
+    </div>
+    
+<div class="navigation">
+    <li class="li"><a class="active" href="{% url 'home' %}">Home</a></li>
+    <!-- <li class="li"><a href="{% url 'animation' %}">Convertor</a></li> -->
+    
+    <li class="li"><a href="{% url 'contact' %}">Contact</a></li>
+    <li class="li"><a href="{% url 'about' %}">About</a></li>
+    {% if not user.is_authenticated %}
+    <li class="li"><a href="{% url 'signup' %}" class="auth-button signup-button">Sign Up</a></li>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <li class="li"><a href="{% url 'logout' %}" class="auth-button">Log-Out</a></li>
+    {% else %}
+    <li class="li"><a href="{% url 'login' %}" class="auth-button">Log-in</a></li>
+    {% endif %}
+  </div>
+  </ul>
 
+  <div class="wrapper">
+    {% block content %}
+    {% endblock %}
+  </div>
 
 </body>
+
 </html>
