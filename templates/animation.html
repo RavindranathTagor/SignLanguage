@@ -1,134 +1,181 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block content %}
-<div class="split left">
-	<h2 align="center">Enter Text or Use Mic</h2>
-	<br>
-		<form action="" method="post" align="left">
-		{% csrf_token %}
-					<input type="text" name="sen" class="mytext" id="speechToText" placeholder="">
-					<button type="button" name="button" class="mic" onclick="record()"><img src="{% static 'mic3.png' %}" height="32px" width="38px" /></button>
-		  			&nbsp&nbsp&nbsp&nbsp
-		  			<input type="submit" name="submit" class="submit">
+<style>
+    .split.left, .split.right {
+        border: none; /* Ensure there is no border */
+    }
+    .split.left {
+        margin-left: -100px;
+        /* Add any specific styles for the left split here */
 
-		</form>
-		<br>
-		<table cellspacing="20px">
-			<tr>
-				<td class="td">The text that you entered is:</td>
-				<td class="td">{{ text }}</td>
-			</tr>
-			<tr>
-				<td class="td">Key words in sentence:</td>
-				<td class="td">
-				<ul class="td" id="list" align="center">
-  					{% for word in words %}
-    				<li id="{{ i }}" style="margin-right: 8px">{{ word }}</li>
-  					{% endfor %}
-				</ul>
-			</td>
-		</tr>
-	</table></div>
-  <div class="split right">
-  <h2 align="center">Sign Language Animation</h2>
+    }
+    .split.right .submit{
+        padding-top:5px;
+        background-color: #feda6a;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-top: -20px;
+        /* Add any specific styles for the right split here */
+    }
+    .split.right .submit:hover{
+        color: grey;
+    }
 
-	<div style="text-align:center">	&nbsp&nbsp
-  	<button class="submit" onclick="playPause()">Play/Pause</button>
-  	<!--  LETS USE ONLY PLAY PAUSE BUTTON WITH 720 *420 ,IT FITS THE SCREEN ASHISH
+    .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+        padding:2px 9px 2px 9px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
 
-  	<button onclick="makeBig()">Big</button>
-  	<button onclick="makeSmall()">Small</button>
-  	<button onclick="makeNormal()">Normal</button>-->
+    h1, h2 {
+        color: #eaebef;
+      
+    }
+h2{
+    margin-top:-20px;
+}
 
+    .container::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    form input{
 
-  	<video id="videoPlayer" width="600" height="350"  preload="auto" autoplay>
-    	<source src="" type="video/mp4">
-    Your browser does not support HTML5 video.
-  	</video>
-  	</div></div>
-<!-- Add iframe below -->
-<!-- <iframe src="http://localhost:3000/" width="100%" height="500px"></iframe> -->
+           width: 80%;
+        margin: auto;
+        overflow: hidden;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    } 
+    button img{
+        border-radius: 10px;
+        
+    }
+    .submit1{
+        border-radius: 30px;
+        margin-top: -31px;
+    }
+    .container p{
+        font-size: 18px;
+        font-weight: bold;
+    }
+</style>
+
+<div class="container">
+    <!-- <h1 align="center" >Sign Language Translation</h1> -->
+    <p align="center" class="">"Sign language: a visual language using gestures, facial expressions, and body language, empowering those who are deaf, hard of hearing, or non-verbal to communicate."</p>
+    <div class="split left">
+        <h2 align="center">Enter Text or Use Mic</h2>
+        <br>
+        <form action="" method="post" align="left">
+            {% csrf_token %}
+            <input type="text" name="sen" class="mytext" id="speechToText" placeholder="Type Your Text">
+            <button type="button" name="button" class="mic" onclick="record()">
+                <img src="{% static 'mic3.png' %}" height="32px" width="28px" />
+            </button>
+            <div class="submit1">
+            &nbsp&nbsp&nbsp&nbsp
+            <input type="submit" name="submit" class="submit"></div>
+        </form>
+        <br>
+        <table cellspacing="20px">
+            <tr>
+                <td class="td">The text that you entered is:</td>
+                <td class="td">{{ text }}</td>
+            </tr>
+            <tr>
+                <td class="td">Key words in sentence:</td>
+                <td class="td">
+                    <ul class="td" id="list" align="center">
+                        {% for word in words %}
+                        <li id="{{ i }}" style="margin-right: 8px">{{ word }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="split right">
+        <h2 align="center">Sign Language Animation</h2>
+        <div style="text-align:center;">
+            <button class="submit" onclick="playPause()">Play/Pause</button>
+        </div>
+        <div style="position: relative; display: inline-block; border: 1px solid #ffffff; margin-top: 10px; margin-left: 20px;">
+            <img src="https://i.ibb.co/rZndsMK/Screenshot-293.png" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+            <video id="videoPlayer" width="600" height="350" preload="auto" autoplay style="position: relative; z-index: 2;">
+                <source src="" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+    </div>
+</div>
 
 <script>
-	//webkitSpeechRecognition api for speech to text conversion
-	function record(){
-		var recognition = new webkitSpeechRecognition();
-		recognition.lang='en-IN';
+    //webkitSpeechRecognition api for speech to text conversion
+    function record() {
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = 'en-IN';
 
-		recognition.onresult = function(event){
-			console.log(event)
-			document.getElementById('speechToText').value = event.results[0][0].transcript;
-		}
-		recognition.start();
-	 }
-	function play()
-	{
-		var videoSource = new Array();
-		var	videos = document.getElementById("list").getElementsByTagName("li");
-		var j;
-		for(j=0;j<videos.length;j++)
-		{
-			videoSource[j] = "/static/" + videos[j].innerHTML +".mp4";
-		}
+        recognition.onresult = function (event) {
+            console.log(event)
+            document.getElementById('speechToText').value = event.results[0][0].transcript;
+        }
+        recognition.start();
+    }
+    function play() {
+        var videoSource = new Array();
+        var videos = document.getElementById("list").getElementsByTagName("li");
+        var j;
+        for (j = 0; j < videos.length; j++) {
+            videoSource[j] = "/static/" + videos[j].innerHTML + ".mp4";
+        }
 
-		var i = 0; // define i
-		var videoCount = videoSource.length;
+        var i = 0; // define i
+        var videoCount = videoSource.length;
 
-		function videoPlay(videoNum)
-		{
-			document.getElementById("list").getElementsByTagName("li")[videoNum].style.color = "#09edc7";
-			document.getElementById("list").getElementsByTagName("li")[videoNum].style.fontSize = "xx-large";
-			document.getElementById("videoPlayer").setAttribute("src", videoSource[videoNum]);
-	    	document.getElementById("videoPlayer").load();
-	    	document.getElementById("videoPlayer").play();
+        function videoPlay(videoNum) {
+            document.getElementById("list").getElementsByTagName("li")[videoNum].style.color = "#09edc7";
+            document.getElementById("list").getElementsByTagName("li")[videoNum].style.fontSize = "xx-large";
+            document.getElementById("videoPlayer").setAttribute("src", videoSource[videoNum]);
+            document.getElementById("videoPlayer").load();
+            document.getElementById("videoPlayer").play();
 
-		}
-		document.getElementById('videoPlayer').addEventListener('ended', myHandler, false);
-		document.getElementById("list").getElementsByTagName("li")[0].style.color = "#09edc7";
-		document.getElementById("list").getElementsByTagName("li")[0].style.fontSize = "xx-large";
+        }
+        document.getElementById('videoPlayer').addEventListener('ended', myHandler, false);
+        document.getElementById("list").getElementsByTagName("li")[0].style.color = "#09edc7";
+        document.getElementById("list").getElementsByTagName("li")[0].style.fontSize = "xx-large";
 
-		videoPlay(0); // play the video
+        videoPlay(0); // play the video
 
-		function myHandler()
-		{
-	 		document.getElementById("list").getElementsByTagName("li")[i].style.color = "#feda6a";
-			document.getElementById("list").getElementsByTagName("li")[i].style.fontSize = "20px";
-			i++;
-	    	if (i == videoCount)
-	    	{
-	       	    document.getElementById("videoPlayer").pause();
-	    	}
-	     	else
-	     	{
-	        	videoPlay(i);
-	    	}
-		}
-	}
-	/* LETS USE ONLY PLAY PAUSE BUTTON WITH 720 *420 ,IT FITS THE SCREEN
-	function makeBig() {
-	    document.getElementById("videoPlayer").width = 560;
-		document.getElementById("videoPlayer").height = 360;
-	}
-
-	function makeSmall() {
-	    document.getElementById("videoPlayer").width = 320;
-		document.getElementById("videoPlayer").height = 180;
-	}
-
-	function makeNormal() {
-	    document.getElementById("videoPlayer").width = 420;
-		document.getElementById("videoPlayer").height =280;
-	}*/
-	function playPause(){
-  		if (document.getElementById("videoPlayer").paused){
-    		play();}
-  		else{
-    		document.getElementById("videoPlayer").pause();}
-		}
-
-	</script>
-
+        function myHandler() {
+            document.getElementById("list").getElementsByTagName("li")[i].style.color = "#feda6a";
+            document.getElementById("list").getElementsByTagName("li")[i].style.fontSize = "20px";
+            i++;
+            if (i == videoCount) {
+                document.getElementById("videoPlayer").pause();
+            }
+            else {
+                videoPlay(i);
+            }
+        }
+    }
+    function playPause() {
+        if (document.getElementById("videoPlayer").paused) {
+            play();
+        }
+        else {
+            document.getElementById("videoPlayer").pause();
+        }
+    }
+</script>
 
 {% endblock %}

@@ -1,16 +1,227 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
-<div class="form-style">
-	<h1>Log in</h1>
-	<form class="site-form" action="." method="post">
-		{% csrf_token %}
-		{{ form }}
-		{% if request.GET.next %}
-			<input type="hidden" name="next" value="{{ request.GET.next }}">
-		{% endif %}
-		<input class="submit" type="submit" value="Log in">
-	</form>
+<head> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+/* Add these styles to your existing CSS or a separate file */
+
+/* Ensure the body and html cover the full viewport height */
+html, body {
+  height: 100%;
+  margin-bottom: 30px;
+}
+
+/* Ensure the wrapper covers the viewport height */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px); /* Adjust height to account for navbar */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Styling for the login container */
+.login-container {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 120px;
+}
+
+/* Center the heading and adjust its size */
+.login-container h1 {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+  margin-left: -5px;
+  font-size: 24px;
+}
+
+/* Style the form elements */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 54px;
+}
+
+/* Style for error messages */
+.error-message {
+  color: red;
+  margin-bottom: 15px;
+}
+
+.error-message p {
+  margin: 0;
+}
+
+/* Style input fields */
+.login-form input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Input focus state */
+.login-form input:focus {
+  border-color: #0056b3;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+}
+
+/* Style the submit button */
+.submit-button {
+  padding: 10px;
+  background: #0056b3;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Button hover effect */
+.submit-button:hover {
+  background: #004494;
+}
+
+/* Style the sign-up link */
+.signup-link {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.signup-link a {
+  color: #0056b3;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+/* Style for the label text */
+.login-form label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Style for the password container */
+.password-container {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+/* Style for the eye icon */
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+  color: #0056b3;
+}
+.logoimg img{
+width: 500px;
+height: 449%;
+margin-left: -76px;
+    MARGIN-TOP: -84PX;
+    float: right;
+ 
+
+  padding-top: 0 !important;
+ 
+  
+  animation: float 3s ease-in-out infinite; /* Added animation */
+  transition: all 0.5s ease-in-out; /* Smooth transition for floating effect */
+
+}
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* Adjust the value to control how high the image floats */
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+/* Ensure the container for the password input and eye icon is relative */
+.password-container input {
+  padding-right: 40px; /* Space for eye icon */
+}
+</style>
+
+<div class="login-wrapper">
+    <div class="login-container">
+        <h1>Log In</h1>
+        <form class="login-form" action="." method="post">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+            <div class="error-message">
+                {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="password-container">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+            </div>
+            <div class="password-container">
+                {{ form.password.label_tag }}
+                <input type="password" id="id_password" name="password" placeholder="Password">
+                <i class="eye-icon fas fa-eye" onclick="togglePasswordVisibility()"></i>
+            </div>
+
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
+            <button type="submit" class="submit-button">Log In</button>
+        </form>
+        <div class="signup-link">
+            <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+        </div>
+    </div>
+    <!-- Added image beside login container -->
+     <div class="logoimg">
+    <div style="margin-left: 20px;">
+        <img src="https://i.ibb.co/C71Gz9W/8.png" alt="Sign Language" style="">
+    </div>
+  </div>
 </div>
+
+<script>
+function togglePasswordVisibility() {
+  const passwordInput = document.getElementById('id_password');
+  const eyeIcon = document.querySelector('.eye-icon');
+  if (passwordInput.type === 'password') {
+    passwordInput.type = 'text';
+    eyeIcon.classList.remove('fa-eye');
+    eyeIcon.classList.add('fa-eye-slash');
+  } else {
+    passwordInput.type = 'password';
+    eyeIcon.classList.remove('fa-eye-slash');
+    eyeIcon.classList.add('fa-eye');
+  }
+}
+</script>
+
 {% endblock %}

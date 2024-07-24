@@ -1,13 +1,227 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block content %}
-<video width="500" height="380" class="center" autoplay loop>
-  <source src= "{% static 'Hello.mp4' %}" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-	<div class="form-style" align="middle" >
-	<a href="{% url 'animation' %}"><button class="button">Click to Start</button></a>
-	</div>
+<style>
+    /* Existing Styles */
+    .btn1 {
+        width: auto;
+        height: auto;
+        padding: 10px 20px;
+        background: blue;
+        color: #fff;
+        font-weight: bold;
+        font-size: 18px;
+        font-family: "Times New Roman";
+        margin: 10px 10px;
+        cursor: pointer;
+        transition: all 0.6s ease;
+        animation: fadeInDown 3s;
+        border-radius: 20px;
+    }
+
+    .btn1:hover {
+        transform: scale(1.1);
+    }
+
+    .form-style {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .form-style img {
+        margin-top: 20px;
+        width: 150px;
+        height: auto;
+        transition: transform 0.3s ease;
+    }
+
+    .form-style img:hover {
+        transform: rotate(10deg);
+    }
+
+    .heading h1 {
+        color: white;
+        font-size: 38px;
+        font-weight: 400;
+        margin-top: 54px;
+        animation: fadeIn 2s;
+        margin-left: 57px;
+        transition: all 0.3s ease;
+    }
+
+    .heading p {
+        color: white;
+        font-size: 24px;
+        margin-bottom: 20px;
+        animation: fadeIn 2s;
+        margin-top: 25px;
+    margin-left: 60px;
+        margin-bottom: 20px;
+        padding: 0px 0px;
+        font-family: "Times new Roman";
+        transition: all 0.6s ease;
+    }
+
+    .heading {
+        margin-top: -501px;
+    }
+
+    .btn {
+        margin-top: 200px 80px 20px -10px;
+        padding-left: 54px;
+        border: none;
+        border-color: pink;
+        padding-top: 86px;
+    }
+
+    .metaimage img {
+        margin-top: 27px;
+        margin-left: 509px;
+        transition: transform 0.5s ease;
+        height: 30%;
+        width: 60%;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* New Styles for Extended Background and Cards */
+    .container {
+        height: 300vh; /* Triple the viewport height */
+    }
+
+    .page {
+        height: 100vh; /* Full viewport height for each page */
+    }
+
+    .cards {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-top: 50px;
+    }
+
+    .card {
+        background: white;
+        width: 300px;
+        padding: 20px;
+        margin: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    .card img {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+
+    .card h3 {
+        margin-top: 15px;
+        font-size: 24px;
+        color: #333;
+    }
+
+    .card p {
+        font-size: 16px;
+        color: #666;
+        margin-top: 10px;
+        font-weight: 400;
+    }
+
+    /* Style for iframe container */
+    .iframe-container {
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .iframe-container iframe {
+        width: 80%;
+        height: 600px;
+        border: 2px solid whitesmoke;
+        margin-top: 20px;
+       
+    }
+    .card img{
+        border: 2px solid black;
+    }
+</style>
+
+<div class="container">
+    <div class="page">
+        <div class="metaimage">
+            <img src="https://i.ibb.co/TvystQv/1.png" alt="Image Description">
+        </div>
+        <div class="heading">
+            <h1>EMPOWERING EDUCATION <br>FOR ALL ABILITIES</h1>
+            <p>Our inclusive Virtual Classroom Platform combines AI </p><p> real-time Sign Language translation to ensure no
+                student is left</p><p>
+                behind. Bridging gaps, building futures
+            
+            
+            </p><p> with accessible and
+                learning experiences.</p>
+        </div>
+        <div class="btn">
+            <button onclick="document.getElementById('virtual-classroom-page').scrollIntoView({ behavior: 'smooth' })" class="btn1">3D VIRTUAL CLASSROOM</button>
+            <a href="{% url 'animation' %}"><button class="btn1">SIGN LANGUAGE TRANSLATION</button></a>
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="cards">
+            <div class="card">
+                <img src="https://i.ibb.co/X8P5zLm/2-3.png" alt="Card 1">
+                <h3>EDUCTATIONAL CONTENT</h3>
+                <p>In our 3D Virtual Classroom, students benefit from a range of resources including lectures with clear audio, interactive external links, and detailed lecture notes for personalized learning.</p>
+            </div>
+            <div class="card">
+                <img src="https://i.ibb.co/68mS0PP/2-2.png" alt="Card 2">
+                <h3>TRANSCRIPTS</h3>
+                <p>Provide written transcripts of all video lectures to allow students to easily reference and review the content. This ensures that students can access the material in both text and audio formats, aiding in studying and enhancing their understanding of the subject matter.</p>
+            </div>
+            <div class="card">
+                <img src="https://i.ibb.co/L96j7CC/Community-Deaf.png" alt="Card 3">
+                <h3>DEAF COMMUNITY/CLUBS</h3>
+                <p>Encourage the formation of clubs and interest groups specifically for deaf students. Provide the necessary infrastructure to facilitate their online meetings and interactions, ensuring accessibility and inclusion.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="virtual-classroom-page">
+        <!-- Embed iframe directly in HTML -->
+        <div class="iframe-container">
+            <iframe src="http://localhost:3000" title="3D Virtual Classroom"></iframe>
+        </div>
+    </div>
+</div>
 {% endblock %}
